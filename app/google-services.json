@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "752870853473",
+    "project_id": "matzip-d3702",
+    "storage_bucket": "matzip-d3702.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752870853473:android:a280fe548b1a85661d5320",
+        "android_client_info": {
+          "package_name": "com.example.matzip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "752870853473-i7o8ks6lm06dt8l2m96ifj07l3036hol.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDstyqeiZ4fseIfxXPjS_Drm5WxV1dEV2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "752870853473-i7o8ks6lm06dt8l2m96ifj07l3036hol.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

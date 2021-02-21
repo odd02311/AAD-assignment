@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">MatZip searcher</string>
+
+    <string name="google_map_app_key">AIzaSyDstyqeiZ4fseIfxXPjS_Drm5WxV1dEV2c</string>
+
+    <!--    디자인할때 표시할 디폴트 글자    -->
+    <string name="default_text">-</string>
+
+    <!--    Activity    -->
+    <string name="activity_title_member_select">Member Select</string>
+    <string name="activity_title_shop_login">Shop Sign In</string>
+    <string name="activity_title_shop_join">Shop Sign Up</string>
+    <string name="activity_title_favorite_category_select">Favorite Category Select</string>
+    <string name="activity_title_main_1">MatZip searcher (User)</string>
+    <string name="activity_title_main_2">MatZip searcher (Shop)</string>
+    <string name="activity_title_shop_edit">Shop Edit</string>
+    <string name="activity_title_map">Map</string>
+    <string name="activity_title_setting">Setting</string>
+
+    <!--    Menu    -->
+    <string name="menu_logout">Logout</string>
+    <string name="menu_setting">Setting</string>
+    <string name="menu_favorite_category">Favorite Category</string>
+
+    <!--    Message    -->
+    <string name="msg_back_press_end">\'Back\' Press the button again to finish</string>
+    <string name="msg_google_sign_failure">Google sign failed.</string>
+    <string name="msg_shop_id_check_empty">Please enter shop ID.</string>
+    <string name="msg_shop_id_check_length">Please enter shop ID at least 6 characters.</string>
+    <string name="msg_password_check_empty">Please enter a password.</string>
+    <string name="msg_password_check_length">Please enter a password of at least 6 characters.</string>
+    <string name="msg_password_check_confirm">Please check your password.</string>
+    <string name="msg_shop_name_check_empty">Please enter the shop name.</string>
+    <string name="msg_shop_phone_number_check_empty">Please enter shop phone number.</string>
+    <string name="msg_shop_address_check_empty">Please enter shop address.</string>
+    <string name="msg_food_category_select_empty">Please select a food category.</string>
+    <string name="msg_menu_table_check_empty">Please enter a menu table.</string>
+    <string name="msg_shop_id_check_overlap">The same ID exists.</string>
+    <string name="msg_login_shop_none">There are no registered members.</string>
+    <string name="msg_login_password_wrong">The password is incorrect.</string>
+    <string name="msg_info_save">Has been saved.</string>
+    <string name="msg_review_check_empty">Please enter a review.</string>
+    <string name="msg_search_shop_empty">There are no restaurants found.</string>
+    <string name="msg_review_empty">There are no reviews.</string>
+    <string name="msg_location_disable">The location is not set.</string>
+    <string name="msg_error">A temporary failure has occurred.</string>
+
+    <!--    Dialog    -->
+    <string name="dialog_title_logout">Logout</string>
+    <string name="dialog_title_location_setting">Location service</string>
+    <string name="dialog_title_review_delete">Delete Review</string>
+    <string name="dialog_msg_logout">Are you sure you want to log out?</string>
+    <string name="dialog_msg_location_setting">Location services are required to use the app.\nDo you want to set the location?</string>
+    <string name="dialog_msg_review_delete">Are you sure you want to delete the review?</string>
+    <string name="dialog_Yes">Yes</string>
+    <string name="dialog_No">No</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_allow">Allow</string>
+    <string name="dialog_deny">Deny</string>
+
+    <string name="permission_rationale_app_use">You need permission to use the app.</string>
+
+    <!--    Shop    -->
+    <string name="shop_representative_photo">Representative photo</string>
+    <string name="shop_id">Shop ID</string>
+    <string name="shop_password">Password</string>
+    <string name="shop_name">Shop name</string>
+    <string name="shop_phone_number">Phone number</string>
+    <string name="shop_address">Address</string>
+    <string name="shop_food_category">Food category</string>
+    <string name="shop_menu_table">Menu table</string>
+    <string name="shop_description">Shop description</string>
+
+    <!--    Review    -->
+    <string name="review_title">Review</string>
+    <string name="review_point">Point</string>
+
+    <!--    Button    -->
+    <string name="button_user">USER</string>
+    <string name="button_shop">SHOP</string>
+    <string name="button_login">Login</string>
+    <string name="button_sign_up">Sign Up</string>
+    <string name="button_join">Join</string>
+    <string name="button_edit">Edit</string>
+    <string name="button_save">Save</string>
+    <string name="button_search">Search</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_view_on_map">View on Map</string>
+
+    <!--    Hint    -->
+    <string name="hint_length_min_size_6">Enter more than 6 characters</string>
+    <string name="hint_confirm_password">Confirm password</string>
+    <string name="hint_review">Review</string>
+
+    <string-array name="food_category">
+        <item>japanese food</item>
+        <item>chinese food</item>
+        <item>western food</item>
+    </string-array>
+</resources>

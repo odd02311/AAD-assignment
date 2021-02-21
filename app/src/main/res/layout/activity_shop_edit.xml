@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="@string/shop_representative_photo"
+                    />
+
+                <ImageView
+                    android:id="@+id/imgPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/ic_plus_thick_24_black"
+                    android:background="@color/image_background_color"
+                    />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp">
+
+                    <TableRow
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:text="@string/shop_id"
+                            />
+
+                        <TextView
+                            android:id="@+id/txtShopId"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:text="@string/default_text"
+                            />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:text="@string/shop_name"
+                            />
+
+                        <EditText
+                            android:id="@+id/editShopName"
+                            android:layout_width="0px"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:textSize="14sp"
+                            android:textColorHint="@color/sub_text_color"
+                            android:inputType="text"
+                            />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:text="@string/shop_phone_number"
+                            />
+
+                        <EditText
+                            android:id="@+id/editPhoneNumber"
+                            android:layout_width="0px"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:textSize="14sp"
+                            android:textColorHint="@color/sub_text_color"
+                            android:inputType="phone"
+                            />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:text="@string/shop_address"
+                            />
+
+                        <EditText
+                            android:id="@+id/editAddress"
+                            android:layout_width="0px"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:textSize="14sp"
+                            android:textColorHint="@color/sub_text_color"
+                            android:inputType="text"
+                            />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:text="@string/shop_food_category"
+                            />
+
+                        <Spinner
+                            android:id="@+id/spFoodCategory"
+                            android:layout_width="0px"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:spinnerMode="dropdown"
+                            />
+
+                    </TableRow>
+
+                </TableLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textSize="12sp"
+                    android:text="@string/shop_menu_table"
+                    />
+
+                <EditText
+                    android:id="@+id/editMenuTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="top|start"
+                    android:lines="4"
+                    android:maxLines="10"
+                    android:minLines="4"
+                    android:scrollbars="vertical"
+                    android:textSize="14sp"
+                    android:textColorHint="@color/sub_text_color"
+                    android:inputType="textMultiLine|text"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textSize="12sp"
+                    android:text="@string/shop_description"
+                    />
+
+                <EditText
+                    android:id="@+id/editMemo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="top|start"
+                    android:lines="4"
+                    android:maxLines="10"
+                    android:minLines="4"
+                    android:scrollbars="vertical"
+                    android:textSize="14sp"
+                    android:textColorHint="@color/sub_text_color"
+                    android:inputType="textMultiLine|text"
+                    />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:text="@string/button_save"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layLoading"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/popup_transparent"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+</FrameLayout>
