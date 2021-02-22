@@ -26,10 +26,10 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        // 제목
+
         setTitle(R.string.activity_title_setting);
 
-        // 홈버튼(<-) 표시
+
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         this.txtFavoriteCategory = findViewById(R.id.txtFavoriteCategory);
@@ -44,7 +44,7 @@ public class SettingActivity extends AppCompatActivity {
 
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == Constants.RequestCode.FAVORITE_CATEGORY) {
-                // 좋아하는 카테고리 설정 이후
+
                 if (data != null) {
                     String category = data.getStringExtra("category");
                     if (!TextUtils.isEmpty(category)) {
@@ -66,10 +66,10 @@ public class SettingActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /* 클릭 리스너 */
+
     private final View.OnClickListener mClickListener = view -> {
         if (view.getId() == R.id.layFavoriteCategory) {
-            // 좋아하는 카테고리 설정
+
             Intent intent = new Intent(this, FavoriteCategorySelectActivity.class);
             intent.putExtra("edit", true);
             startActivityForResult(intent, Constants.RequestCode.FAVORITE_CATEGORY);

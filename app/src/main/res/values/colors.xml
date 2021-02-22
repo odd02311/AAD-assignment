@@ -8,28 +8,28 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- 아이콘 -->
+    <!-- Icon -->
     <color name="gray_icon_color">#999999</color>
     <color name="blue_icon_color">#2979FF</color>
     <color name="red_icon_color">#FF3333</color>
 
-    <!-- 텍스트 -->
+    <!-- Text -->
     <color name="default_text_color">#000000</color>
     <color name="sub_text_color">#999999</color>
     <color name="error_text_color">#FF3333</color>
 
-    <!-- 리스트 -->
+    <!-- List -->
     <color name="default_list_color">#FFFFFF</color>
     <color name="pressed_list_color">#D6D6D6</color>
 
-    <!-- 라인 -->
+    <!-- Line -->
     <color name="default_line_color">#DDDDDD</color>
 
-    <!-- 백그라운드 -->
+    <!-- Background -->
     <color name="window_background_color">#FFFFFF</color>
     <color name="info_background_color">#EEEEEE</color>
     <color name="image_background_color">#EEEEEE</color>
 
-    <!-- 투명도 -->
+
     <color name="popup_transparent">#66000000</color>
 </resources>

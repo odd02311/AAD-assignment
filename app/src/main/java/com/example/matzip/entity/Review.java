@@ -2,15 +2,15 @@ package com.example.matzip.entity;
 
 public class Review {
 
-    private String shopDocId;                   // 가게 Doc Id
-    private String userDocId;                   // 작성 회원 Doc Id
+    private String shopDocId;
+    private String userDocId;
 
-    private int point;                          // 별점
-    private String contents;                    // 리뷰 내용
+    private int point;
+    private String contents;
 
-    private long inputTimeMillis;               // 등록일시를 millisecond 로 표현
+    private long inputTimeMillis;
 
-    /* 파이어스토어에서 객체 매핑을 위해 기본 생성자가 필요함 */
+
     public Review() {}
 
     public Review(String shopDocId, String userDocId, int point, String contents, long inputTimeMillis) {

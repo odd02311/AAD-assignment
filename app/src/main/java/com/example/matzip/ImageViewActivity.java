@@ -22,19 +22,19 @@ public class ImageViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_view);
 
-        // 이미지 정보
+
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         String filePath = intent.getStringExtra("file_path");
 
         setTitle(title);
 
-        // 홈버튼(<-) 표시
+
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         ImageView imgPhoto = findViewById(R.id.imgPhoto);
 
-        // 이미지 표시
+
         Glide.with(this)
                 .load("file://" + filePath)
                 .error(R.drawable.ic_alert_circle_24_gray)

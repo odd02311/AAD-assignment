@@ -20,20 +20,20 @@ public class ReviewPopup extends PopupWindow {
     private EditText editContents;
     private TextView txtMessage;
 
-    private int point;                      // 별점
+    private int point;
 
-    private int mode;                       // 등록(0), 수정(1)
+    private int mode;
 
     public ReviewPopup(View view, int point, String contents) {
         super(view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
         if (point == 0) {
-            // 등록
+
             this.mode = 0;
-            // 5점을 디폴트로 선택
+
             this.point = 5;
         } else {
-            // 수정
+
             this.mode = 1;
             this.point = point;
         }
@@ -61,7 +61,7 @@ public class ReviewPopup extends PopupWindow {
         this.editContents.setHint(R.string.hint_review);
         this.editContents.setText(contents);
 
-        // 오류 표시
+
         this.txtMessage = view.findViewById(R.id.txtMessage);
         this.txtMessage.setText("");
 
@@ -69,14 +69,14 @@ public class ReviewPopup extends PopupWindow {
         view.findViewById(R.id.btnCancel).setOnClickListener(mClickListener);
     }
 
-    /* 리스너 등록 */
+
     public void setClickListener(IClickListener listener) {
         this.listener = listener;
     }
 
-    /* 입력 데이터 체크 */
+
     private boolean checkData() {
-        // 입력 체크
+
         String contents = this.editContents.getText().toString();
         if (TextUtils.isEmpty(contents)) {
             this.txtMessage.setText(R.string.msg_review_check_empty);
@@ -89,7 +89,7 @@ public class ReviewPopup extends PopupWindow {
         return true;
     }
 
-    /* 별점 Radio 버튼 체크 리스너 */
+
     private RadioGroup.OnCheckedChangeListener mCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
@@ -113,19 +113,19 @@ public class ReviewPopup extends PopupWindow {
         }
     };
 
-    /* 클릭 리스너 */
+
     private final View.OnClickListener mClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btnOk:
-                    // 입력 데이터 체크
+
                     if (!checkData()) {
                         return;
                     }
 
                     if (listener != null) {
-                        // 별점, 리뷰 내용을 넘겨줌
+
                         Bundle bundle = new Bundle();
                         bundle.putInt("point", point);
                         bundle.putString("contents", editContents.getText().toString());
@@ -137,7 +137,7 @@ public class ReviewPopup extends PopupWindow {
                     dismiss();
                     break;
                 case R.id.btnCancel:
-                    // 취소
+
                     dismiss();
                     break;
             }

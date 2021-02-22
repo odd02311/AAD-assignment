@@ -26,10 +26,10 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_2);
 
-        // 제목
+
         setTitle(R.string.activity_title_main_2);
 
-        // 종료 핸들러
+
         this.backPressHandler = new BackPressHandler(this);
 
         findViewById(R.id.btnEdit).setOnClickListener(mClickListener);
@@ -42,7 +42,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // main 메뉴 생성
+
         getMenuInflater().inflate(R.menu.main_2, menu);
         return true;
     }
@@ -50,10 +50,10 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_logout) {
-            // 로그아웃
+
             new AlertDialog.Builder(this)
                     .setPositiveButton(getString(R.string.dialog_Yes), (dialog, which) -> {
-                        // 로그아웃
+
                         logout();
                     })
                     .setNegativeButton(getString(R.string.dialog_cancel), null)
@@ -68,28 +68,28 @@ public class MainActivity2 extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /* 로그아웃 */
+
     private void logout() {
-        // Document Id 값 clear
+
         SharedPreferencesUtils.getInstance(this).put(Constants.SharedPreferencesName.SHOP_DOCUMENT_ID, "");
         SharedPreferencesUtils.getInstance(this).put(Constants.SharedPreferencesName.MEMBER_KIND, Constants.MemberKind.NONE);
 
-        // 로그인화면으로 이동
+
         Intent intent = new Intent(this, ShopLoginActivity.class);
         startActivity(intent);
         finish();
     }
 
-    /* 클릭 리스너 */
+
     private final View.OnClickListener mClickListener = v -> {
         if (v.getId() == R.id.btnEdit) {
-            // 가게정보 수정
+
             Intent intent = new Intent(this, ShopEditActivity.class);
             startActivity(intent);
         }
     };
 
-    /* Back Press Class */
+
     private class BackPressHandler {
         private Context context;
         private Toast toast;
@@ -111,7 +111,7 @@ public class MainActivity2 extends AppCompatActivity {
             }
 
             if (System.currentTimeMillis() <= this.backPressedTime + (Constants.LoadingDelay.LONG * 2)) {
-                // 종료
+
                 moveTaskToBack(true);
                 finish();
                 this.toast.cancel();

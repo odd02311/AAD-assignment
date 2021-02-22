@@ -44,17 +44,17 @@ public class ShopLoginActivity extends AppCompatActivity {
     private LinearLayout layLoading;
     private EditText editShopId, editPassword;
 
-    private InputMethodManager imm;                 // 키보드를 숨기기 위해 필요함
+    private InputMethodManager imm;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_login);
 
-        // 제목
+
         setTitle(R.string.activity_title_shop_join);
 
-        // 로딩 레이아웃
+
         this.layLoading = findViewById(R.id.layLoading);
         ((ProgressBar) findViewById(R.id.progressBar)).setIndeterminateTintList(ColorStateList.valueOf(Color.WHITE));
 
@@ -68,7 +68,7 @@ public class ShopLoginActivity extends AppCompatActivity {
         findViewById(R.id.btnSignUp).setOnClickListener(mClickListener);
         this.layLoading.setOnClickListener(mClickListener);
 
-        // 키보드를 숨기기 위해 필요함
+
         this.imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
         this.editShopId.requestFocus();
@@ -88,15 +88,15 @@ public class ShopLoginActivity extends AppCompatActivity {
 
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == Constants.RequestCode.JOIN) {
-                // 회원가입 이후 로그인하기
+
                 if (data != null) {
                     this.editShopId.setText(data.getStringExtra("shop_id"));
                     this.editPassword.setText(data.getStringExtra("password"));
 
                     this.layLoading.setVisibility(View.VISIBLE);
-                    // 로딩 레이아웃을 표시하기 위해 딜레이를 줌
+
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                        // 로그인
+
                         login();
                     }, Constants.LoadingDelay.SHORT);
                 }
@@ -104,9 +104,9 @@ public class ShopLoginActivity extends AppCompatActivity {
         }
     }
 
-    /* 입력 데이터 체크 */
+
     private boolean checkData() {
-        // 아이디 입력 체크
+
         String shopId = this.editShopId.getText().toString();
         if (TextUtils.isEmpty(shopId)) {
             Toast.makeText(this, R.string.msg_shop_id_check_empty, Toast.LENGTH_SHORT).show();
@@ -114,7 +114,7 @@ public class ShopLoginActivity extends AppCompatActivity {
             return false;
         }
 
-        // 비밀번호 입력 체크
+
         String password = this.editPassword.getText().toString();
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, R.string.msg_password_check_empty, Toast.LENGTH_SHORT).show();
@@ -122,13 +122,13 @@ public class ShopLoginActivity extends AppCompatActivity {
             return false;
         }
 
-        // 키보드 숨기기
+
         this.imm.hideSoftInputFromWindow(this.editPassword.getWindowToken(), 0);
 
         return true;
     }
 
-    /* 로그인 */
+
     private void login() {
         String shopId = this.editShopId.getText().toString();
         final String password = this.editPassword.getText().toString();
@@ -136,7 +136,7 @@ public class ShopLoginActivity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference reference = db.collection(Constants.FirestoreCollectionName.SHOP);
 
-        // 로그인
+
         Query query = reference.whereEqualTo("shopId", shopId).limit(1);
         query.get().addOnCompleteListener(task -> {
             this.layLoading.setVisibility(View.GONE);
@@ -144,27 +144,27 @@ public class ShopLoginActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 if (task.getResult() != null) {
                     if (task.getResult().size() == 0) {
-                        // 로그인 실패 (회원이 아님)
+
                         Toast.makeText(this, getString(R.string.msg_login_shop_none), Toast.LENGTH_SHORT).show();
                     } else {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Log.d(TAG, document.getId() + " => " + document.getData());
                             Shop shop = document.toObject(Shop.class);
                             if (shop.getPassword().equals(password)) {
-                                // 로그인 성공
 
-                                // Document Id 저장
+
+
                                 GlobalVariable.shopDocumentId = document.getId();
                                 GlobalVariable.shop = shop;
 
-                                // SharedPreferences 에 록그인 정보 저장 (자동 로그인 기능)
+
                                 SharedPreferencesUtils.getInstance(this).put(Constants.SharedPreferencesName.MEMBER_KIND, Constants.MemberKind.SHOP);
                                 SharedPreferencesUtils.getInstance(this).put(Constants.SharedPreferencesName.SHOP_DOCUMENT_ID, GlobalVariable.shopDocumentId);
 
-                                // 메인 화면으로 이동
+
                                 goMain();
                             } else {
-                                // 로그인 실패 (비밀번호 틀림)
+
                                 Toast.makeText(this, R.string.msg_login_password_wrong, Toast.LENGTH_SHORT).show();
                                 this.executed = false;
                             }
@@ -172,19 +172,19 @@ public class ShopLoginActivity extends AppCompatActivity {
                         }
                     }
                 } else {
-                    // 오류
+
                     Toast.makeText(this, R.string.msg_error, Toast.LENGTH_SHORT).show();
                     this.executed = false;
                 }
             } else {
-                // 오류
+
                 Toast.makeText(this, R.string.msg_error, Toast.LENGTH_SHORT).show();
                 this.executed = false;
             }
         });
     }
 
-    /* 메인화면으로 이동 */
+
     private void goMain() {
         Intent intent = new Intent(this, MainActivity2.class);
         startActivity(intent);
@@ -192,34 +192,34 @@ public class ShopLoginActivity extends AppCompatActivity {
         finish();
     }
 
-    /* 업주(가게) 회원가입화면으로 이동 */
+
     private void goJoin() {
         Intent intent = new Intent(this, ShopJoinActivity.class);
         startActivityForResult(intent, Constants.RequestCode.JOIN);
     }
 
-    /* 클릭 리스너 */
+
     @SuppressLint("NonConstantResourceId")
     private final View.OnClickListener mClickListener = v -> {
         switch (v.getId()) {
             case R.id.btnLogin:
-                // 로그인
+
                 if (checkData()) {
                     this.executed = true;
                     this.layLoading.setVisibility(View.VISIBLE);
-                    // 로딩 레이아웃을 표시하기 위해 딜레이를 줌
+
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                        // 로그인
+
                         login();
                     }, Constants.LoadingDelay.SHORT);
                 }
                 break;
             case R.id.btnSignUp:
-                // 회원가입 화면으로 이동
+
                 goJoin();
                 break;
             case R.id.layLoading:
-                // 로딩중 클릭 방지
+
                 break;
         }
     };

@@ -30,17 +30,17 @@ public class FoodCategoryAdapter extends RecyclerView.Adapter<FoodCategoryAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food_category, null);
 
-        // Item 사이즈 조절
+
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(lp);
 
-        // ViewHolder 생성
+        // Create ViewHolder
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txtCategory.setText(this.items.get(position));   // 카테고리
+        holder.txtCategory.setText(this.items.get(position));
     }
 
     @Override
@@ -61,7 +61,7 @@ public class FoodCategoryAdapter extends RecyclerView.Adapter<FoodCategoryAdapte
 
         @Override
         public void onClick(View view) {
-            // 카테고리 선택
+            // Select category
             Bundle bundle = new Bundle();
             int position = getAdapterPosition();
 

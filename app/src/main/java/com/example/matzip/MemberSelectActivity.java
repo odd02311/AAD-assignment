@@ -41,8 +41,8 @@ public class MemberSelectActivity extends AppCompatActivity {
 
     private boolean executed = false;
 
-    private GoogleSignInClient googleSignInClient;      // 구글 api 클라이언트
-    private FirebaseAuth firebaseAuth;                  // 파이어베이스 인증 객체 생성
+    private GoogleSignInClient googleSignInClient;
+    private FirebaseAuth firebaseAuth;
 
     private LinearLayout layLoading;
 
@@ -51,10 +51,10 @@ public class MemberSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_select);
 
-        // 제목
+
         setTitle(R.string.activity_title_member_select);
 
-        // 로딩 레이아웃
+
         this.layLoading = findViewById(R.id.layLoading);
         ((ProgressBar) findViewById(R.id.progressBar)).setIndeterminateTintList(ColorStateList.valueOf(Color.WHITE));
 
@@ -62,7 +62,7 @@ public class MemberSelectActivity extends AppCompatActivity {
         findViewById(R.id.btnShop).setOnClickListener(mClickListener);
         findViewById(R.id.layLoading).setOnClickListener(mClickListener);
 
-        // 파이어베이스 인증 객체 선언
+
         this.firebaseAuth = FirebaseAuth.getInstance();
         this.googleSignInClient = GoogleSignIn.getClient(this,
                 Utils.getGoogleSignInOptions(getString(R.string.default_web_client_id)));
@@ -82,18 +82,18 @@ public class MemberSelectActivity extends AppCompatActivity {
 
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == Constants.RequestCode.GOOGLE_SIGN_IN) {
-                // 구글 연동
 
-                // 구글로그인 버튼 응답
+
+
                 Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
                 try {
-                    // 구글 로그인 성공
-                    Log.d(TAG, "연동 성공");
+
+                    Log.d(TAG, "Connect Success");
 
                     GoogleSignInAccount account = task.getResult(ApiException.class);
                     authWithGoogle(account);
                 } catch (ApiException e) {
-                    Log.d(TAG, "연동 실패: " + e.toString());
+                    Log.d(TAG, "Fail Connect: " + e.toString());
 
                     Toast.makeText(this, getString(R.string.msg_google_sign_failure), Toast.LENGTH_LONG).show();
                     this.executed = false;
@@ -102,11 +102,11 @@ public class MemberSelectActivity extends AppCompatActivity {
         }
     }
 
-    /* 일반회원 구글 연동 */
+
     private void signInGoogle() {
         this.executed = true;
 
-        // 현재 연동되어 있는지 확인
+
         FirebaseUser currentUser = this.firebaseAuth.getCurrentUser();
         if (currentUser == null) {
             Intent signInIntent = googleSignInClient.getSignInIntent();
@@ -116,21 +116,20 @@ public class MemberSelectActivity extends AppCompatActivity {
         }
     }
 
-    // 사용자가 정상적으로 로그인한 후에 GoogleSignInAccount 개체에서 ID 토큰을 가져와서
-    // Firebase 사용자 인증 정보로 교환하고 Firebase 사용자 인증 정보를 사용해 Firebase 에 인증합니다.
+
     private void authWithGoogle(GoogleSignInAccount acct) {
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         this.firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        // 로그인 성공
-                        Log.d(TAG, "성공");
+
+                        Log.d(TAG, "Success");
 
                         FirebaseUser user = firebaseAuth.getCurrentUser();
                         successAuth(user);
                     } else {
-                        // 로그인 실패
-                        Log.d(TAG, "실패");
+
+                        Log.d(TAG, "Fail");
 
                         Toast.makeText(this, getString(R.string.msg_google_sign_failure), Toast.LENGTH_LONG).show();
                         executed = false;
@@ -138,7 +137,7 @@ public class MemberSelectActivity extends AppCompatActivity {
                 });
     }
 
-    /* 구글 인증 성공 */
+
     private void successAuth(FirebaseUser snsUser) {
         if (snsUser != null) {
             Log.d(TAG, "Uid: " + snsUser.getUid());
@@ -162,35 +161,35 @@ public class MemberSelectActivity extends AppCompatActivity {
                 email = "";
             }
 
-            // 사용자 정보
+
             User user = new User(snsUser.getUid(), userName, phoneNumber, email, System.currentTimeMillis());
 
             this.layLoading.setVisibility(View.VISIBLE);
-            // 로딩 레이아웃을 표시하기 위해 딜레이 적용
+
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                // 일반회원 로그인
+
                 login(user);
             }, Constants.LoadingDelay.SHORT);
         } else {
-            Log.d(TAG, "user: 없음");
+            Log.d(TAG, "user: None");
 
             Toast.makeText(this, getString(R.string.msg_error), Toast.LENGTH_LONG).show();
             this.executed = false;
         }
     }
 
-    /* 일반회원 로그인 */
+
     private void login(final User user) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // 로그인
+
         Query query = db.collection(Constants.FirestoreCollectionName.USER)
                 .whereEqualTo("snsKey", user.getSnsKey()).limit(1);
         query.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 if (task.getResult() != null) {
                     if (task.getResult().size() == 0) {
-                        // 로그인 실패 (회원가입하기)
+
                         join(user);
                     } else {
                         for (QueryDocumentSnapshot document : task.getResult()) {
@@ -198,23 +197,23 @@ public class MemberSelectActivity extends AppCompatActivity {
 
                             this.layLoading.setVisibility(View.GONE);
 
-                            // 일반회원
+
                             User user1 = document.toObject(User.class);
                             if (user1 != null) {
-                                // Document Id 저장
+
                                 GlobalVariable.userDocumentId = document.getId();
                                 GlobalVariable.user = user1;
 
-                                // SharedPreferences 에 록그인 정보 저장 (자동 로그인 기능)
+
                                 SharedPreferencesUtils.getInstance(this).put(Constants.SharedPreferencesName.MEMBER_KIND, Constants.MemberKind.USER);
                                 SharedPreferencesUtils.getInstance(this).put(Constants.SharedPreferencesName.USER_DOCUMENT_ID, GlobalVariable.userDocumentId);
 
-                                // 좋아하는 음식 카테고리를 선택하지 않았으면
+
                                 if (TextUtils.isEmpty(user1.getFavoriteCategory())) {
-                                    // 좋아하는 음식 카테고리 선택화면으로 이동
+
                                     goFavoriteCategorySelect();
                                 } else {
-                                    // 메인으로 이동
+
                                     goMain();
                                 }
                             } else {
@@ -225,13 +224,13 @@ public class MemberSelectActivity extends AppCompatActivity {
                         }
                     }
                 } else {
-                    // 오류
+
                     Toast.makeText(this, getString(R.string.msg_error), Toast.LENGTH_LONG).show();
                     this.layLoading.setVisibility(View.GONE);
                     this.executed = false;
                 }
             } else {
-                // 오류
+
                 Toast.makeText(this, getString(R.string.msg_error), Toast.LENGTH_LONG).show();
                 this.layLoading.setVisibility(View.GONE);
                 this.executed = false;
@@ -239,37 +238,37 @@ public class MemberSelectActivity extends AppCompatActivity {
         });
     }
 
-    /* SNS 로그인을 통해 회원가입 */
+
     private void join(final User user) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // 회원가입
+
         db.collection(Constants.FirestoreCollectionName.USER)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
-                    // 성공
+
                     this.layLoading.setVisibility(View.GONE);
 
-                    // Document Id 저장
+
                     GlobalVariable.userDocumentId = documentReference.getId();
                     GlobalVariable.user = user;
 
-                    // SharedPreferences 에 록그인 정보 저장 (자동 로그인 기능)
+
                     SharedPreferencesUtils.getInstance(this).put(Constants.SharedPreferencesName.MEMBER_KIND, Constants.MemberKind.USER);
                     SharedPreferencesUtils.getInstance(this).put(Constants.SharedPreferencesName.USER_DOCUMENT_ID, GlobalVariable.userDocumentId);
 
-                    // 좋아하는 음식 카테고리 선택화면으로 이동
+
                     goFavoriteCategorySelect();
                 })
                 .addOnFailureListener(e -> {
-                    // 실패
+
                     Toast.makeText(this, getString(R.string.msg_error), Toast.LENGTH_LONG).show();
                     this.layLoading.setVisibility(View.GONE);
                     executed = false;
                 });
     }
 
-    /* 좋아하는 음식 카테고리 선택화면으로 이동 */
+
     private void goFavoriteCategorySelect() {
         Intent intent = new Intent(this, FavoriteCategorySelectActivity.class);
         startActivity(intent);
@@ -277,7 +276,7 @@ public class MemberSelectActivity extends AppCompatActivity {
         finish();
     }
 
-    /* 업주회원 로그인화면으로 이동 */
+
     private void goShopLogin() {
         Intent intent = new Intent(this, ShopLoginActivity.class);
         startActivity(intent);
@@ -285,7 +284,7 @@ public class MemberSelectActivity extends AppCompatActivity {
         finish();
     }
 
-    /* 일반회원 메인화면으로 이동 */
+
     private void goMain() {
         Intent intent = new Intent(this, MainActivity1.class);
         startActivity(intent);
@@ -293,20 +292,20 @@ public class MemberSelectActivity extends AppCompatActivity {
         finish();
     }
 
-    /* 클릭 리스너 */
+
     @SuppressLint("NonConstantResourceId")
     private final View.OnClickListener mClickListener = v -> {
         switch (v.getId()) {
             case R.id.btnUser:
-                // 일반회원 구글 연동
+
                 signInGoogle();
                 break;
             case R.id.btnShop:
-                // 업주회원
+
                 goShopLogin();
                 break;
             case R.id.layLoading:
-                // 로딩중 클릭 방지
+
                 break;
         }
     };

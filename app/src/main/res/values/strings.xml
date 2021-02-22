@@ -3,7 +3,7 @@
 
     <string name="google_map_app_key">AIzaSyDstyqeiZ4fseIfxXPjS_Drm5WxV1dEV2c</string>
 
-    <!--    디자인할때 표시할 디폴트 글자    -->
+
     <string name="default_text">-</string>
 
     <!--    Activity    -->

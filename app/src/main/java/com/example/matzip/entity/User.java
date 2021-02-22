@@ -2,15 +2,15 @@ package com.example.matzip.entity;
 
 public class User {
 
-    private String snsKey;                  // SNS 로그인 키값(UID)
+    private String snsKey;
 
-    private String name;                    // 이름
-    private String phoneNumber;             // 휴대번호
-    private String email;                   // 이메일
+    private String name;
+    private String phoneNumber;
+    private String email;
 
-    private String favoriteCategory;        // 좋아하는 카테고리
+    private String favoriteCategory;
 
-    private long joinTimeMillis;            // 가입일시를 millisecond 로 표현
+    private long joinTimeMillis;
 
     public User() {}
 

@@ -2,27 +2,27 @@ package com.example.matzip.entity;
 
 public class Shop {
 
-    private String shopId;                  // 아이디
-    private String password;                // 비밀번호
+    private String shopId;                  // Shop Account
+    private String password;                // Password
 
-    private String name;                    // 상호
-    private String phoneNumber;             // 전화번호
-    private String address;                 // 주소
+    private String name;                    // Shop name
+    private String phoneNumber;             // Phone number
+    private String address;                 // Address
 
-    private String foodCategory;            // 음식 카테고리
+    private String foodCategory;
 
-    private String menuTable;               // 메뉴 (TEXT)
-    private String memo;                    // 가게 설명
+    private String menuTable;
+    private String memo;
 
-    private double latitude;                // 위도
-    private double longitude;               // 경도
+    private double latitude;
+    private double longitude;
 
-    private String imageFileName;           // 가게 대표 사진 파일명 (이미지는 Storage 에 저장됨)
+    private String imageFileName;
 
-    private int reviewPoint;                // 총 별점 합산점수
-    private int reviewCount;                // 리뷰 수
+    private int reviewPoint;
+    private int reviewCount;
     
-    private long joinTimeMillis;            // 가입일시를 millisecond 로 표현
+    private long joinTimeMillis;
 
     public Shop() {}
 
